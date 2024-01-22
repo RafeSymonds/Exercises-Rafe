@@ -1,0 +1,12 @@
+
+# Compiled files:
+*.o
+*.a
+*.exe
+
+# Backup files for editors:
+*~
+*#
+
+#vs code settings
+.vscode
