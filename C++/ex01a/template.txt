@@ -1,0 +1,22 @@
+
+Write a C++ program that outputs the number 5.  Specifically, the program should look like:
+
+#include <iostream>
+
+int main() {
+  std::cout << 5 << std::endl;
+  return 0;
+}
+
+It should be saved into a file called ex01a.cpp. You should then be able to compile this with the following command:
+
+c++ -o ex01a.exe ex01a.cpp
+
+You can then execute the program by typing:
+
+./ex01a.exe
+
+This should generate the following output:
+
+5
+
