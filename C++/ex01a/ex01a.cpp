@@ -1,7 +1,14 @@
 
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 int main() {
-  std::cout << 5 << std::endl;
-  return 0;
+    string word;
+    while (cin >> word) {
+        cout << word << '\n';
+    }
+    // std::cout << 5 << std::endl;
+    return 0;
 }

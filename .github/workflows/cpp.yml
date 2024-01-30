@@ -16,4 +16,4 @@ jobs:
     - name: make
       run: make all
     - name: run file
-      run: ./ex01a.exe
+      run: ./C++/ex01a/ex01a.exe < C++/ex01a/ex01.input.txt > C++/ex01a/ex01.output.txt

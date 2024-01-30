@@ -1,4 +1,4 @@
-import pythontest
+import pythontest as pythontest
 
 def test_add():
     assert pythontest.add(5,10) == 15
