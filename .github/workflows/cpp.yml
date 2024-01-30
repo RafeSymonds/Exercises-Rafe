@@ -1,4 +1,4 @@
-name: ex01a test
+name: C++ ex01a build, run, compare
 
 on:
   push:
