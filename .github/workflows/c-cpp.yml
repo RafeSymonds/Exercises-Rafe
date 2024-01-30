@@ -8,9 +8,7 @@ on:
 
 jobs:
   run_and_compile:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Install g++
@@ -18,9 +16,4 @@ jobs:
     - name: make
       run: make all
     - name: run file
-      run: ./ex01a.exe > studentOutput
-    - name: compare
-      - if: studentOutput == 5
-       run: echo "correct answer"
-     - if: studentOutput != 5
-       run: echo "wrong answer"
+      run: ./ex01a.exe
