@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: ex01a test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  run and compile:
 
     runs-on: ubuntu-latest
 
