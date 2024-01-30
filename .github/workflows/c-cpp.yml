@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  run and compile:
+  run_and_compile:
 
     runs-on: ubuntu-latest
 
