@@ -20,5 +20,7 @@ jobs:
     - name: run file
       run: ./ex01a.exe > studentOutput
     - name: compare
-      run: studentOutput == 5
-      
+      - if: studentOutput == 5
+       run: echo "correct answer"
+     - if: studentOutput != 5
+       run: echo "wrong answer"
