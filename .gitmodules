@@ -1,3 +1,6 @@
 [submodule "Exercise-Grading"]
 	path = .github/workflows/Exercise-Grading
 	url = git@github.com:RafeSymonds/Exercise-Grading.git
+[submodule ".github/workflows/Exercise-Grading"]
+	path = .github/workflows/Exercise-Grading
+	url = git@github.com:RafeSymonds/Exercise-Grading.git
