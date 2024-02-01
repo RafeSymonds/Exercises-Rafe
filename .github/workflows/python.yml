@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name:
-      uses: ./.github/workflows/Exercise-Grading/.github/workflows/python.yml
+      uses: ./.github/workflows/Exercise-Grading/.github/workflows/privatePython.yml
     - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
