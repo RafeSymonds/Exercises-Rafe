@@ -16,6 +16,6 @@ jobs:
     - name: make
       run: make all
     - name: run file
-      run: ./C++/ex01a/ex01a.exe < C++/ex01a/ex01.input.txt > C++/ex01a/ex01.output.txt
+      run: ./C++/ex01a/ex01a.exe <.io/ex01a/ex01.input.txt > .io/ex01a/ex01.output.txt
     - name: compare results
       run: diff C++/ex01a/ex01.output.txt C++/ex01a/ex01.correct.output.txt

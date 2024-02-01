@@ -1,7 +1,0 @@
-dog
-and
-cat
-go
-down
-the
-street

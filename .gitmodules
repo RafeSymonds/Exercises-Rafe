@@ -1,0 +1,6 @@
+[submodule "Exercise-Grading"]
+	path = Exercise-Grading
+	url = git@github.com:RafeSymonds/Exercise-Grading.git
+[submodule "grading"]
+	path = grading
+	url = git@github.com:RafeSymonds/Exercise-Grading.git
