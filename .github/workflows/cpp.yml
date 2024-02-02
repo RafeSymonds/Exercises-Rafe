@@ -18,4 +18,4 @@ jobs:
     - name: run file
       run: ./C++/ex01a/ex01a.exe <.io/ex01a/ex01.input.txt > .io/ex01a/ex01.output.txt
     - name: compare results
-      run: diff C++/ex01a/ex01.output.txt C++/ex01a/ex01.correct.output.txt
+      run: diff .io/ex01a/ex01.output.txt .io/ex01a/ex01.correct.output.txt

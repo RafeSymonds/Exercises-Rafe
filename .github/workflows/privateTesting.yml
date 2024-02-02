@@ -1,4 +1,4 @@
-name: Grade Code
+name: Private Tests
 
 on:
   push:
