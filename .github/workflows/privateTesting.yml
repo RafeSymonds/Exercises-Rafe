@@ -1,0 +1,36 @@
+name: Grade Code
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v2
+      
+      - name: Checkout user's repository
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.repository.full_name }}
+          ref: ${{ github.event.before }}
+          path: ./user-repo
+      
+      - name: Checkout private tests repository
+        uses: actions/checkout@v2
+        with:
+          repository: RafeSymonds/Exercise-Grading
+          ref: main
+          path: ./Exercise-Grading
+        env:
+          PAT: ${{ secrets.PRIVATE_TESTS_PAT }} # Use the Personal Access Token stored in GitHub Secrets
+      - name: make
+        run: make all
+      - name: run file
+        run: ./C++/ex01a/ex01a.exe <.io/ex01a/ex01.input.txt > .io/ex01a/ex01.output.txt
+      - name: compare results
+        run: diff C++/ex01a/ex01.output.txt C++/ex01a/ex01.correct.output.txt
