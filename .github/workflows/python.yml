@@ -22,7 +22,7 @@ jobs:
       # with:
         # submodules: recursive
     - name: run private
-      uses: ./Exercise-Grading/action.yml
+      uses: ./Exercise-Grading
     
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
