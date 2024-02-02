@@ -16,7 +16,7 @@ jobs:
       - name: Decrypt File
         run: |
           # Decrypt the encrypted file using OpenSSL
-          openssl enc -d -aes-256-cbc -in encrypted-file.enc -out decrypted-file.txt -pass pass:${{ secrets.ENCRYPTION_KEY }}
+          openssl enc -d -aes-256-cbc -in encrypted-file.enc -out decrypted-file.txt -pass pass:${{ secrets.DECRIPTION_KEY }}
     
       - name: Display Decrypted File
         run: cat decrypted-file.txt
