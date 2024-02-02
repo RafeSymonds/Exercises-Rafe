@@ -10,24 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout main repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
       
-      - name: Checkout user's repository
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ github.event.repository.full_name }}
-          ref: ${{ github.event.before }}
-          path: ./user-repo
-      
-      - name: Checkout private tests repository
-        uses: actions/checkout@v2
-        with:
-          repository: RafeSymonds/Exercise-Grading
-          ref: main
-          path: ./Exercise-Grading
-        env:
-          PAT: ${{ secrets.PRIVATE_TESTS_PAT }} # Use the Personal Access Token stored in GitHub Secrets
+      - name: Decrypt File
+        run: |
+          # Decrypt the encrypted file using OpenSSL
+          openssl enc -d -aes-256-cbc -in encrypted-file.enc -out decrypted-file.txt -pass pass:${{ secrets.ENCRYPTION_KEY }}
+    
+      - name: Display Decrypted File
+        run: cat decrypted-file.txt
       - name: make
         run: make all
       - name: run file
