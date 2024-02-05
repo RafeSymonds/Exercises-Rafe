@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       testID:
+        description: 'Test ID'
         required: true
         default: "no test"
         type: string
