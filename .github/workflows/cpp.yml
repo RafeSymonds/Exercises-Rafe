@@ -36,3 +36,16 @@ jobs:
       run: |
         ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input2.txt > ${{ runner.temp }}/ex02.output2.txt
         diff ${{ runner.temp }}/ex02.output2.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output2.txt
+  
+  runAllTests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ./.github/workflows/testing.yaml
+      with: 
+        testID: "01"
+    - name:
+      run: |
+        for i in {1..5}; do
+          echo "Calling action with counter: $i"
+          name: "Step $i"

@@ -1,0 +1,22 @@
+name: C++ Testing
+
+on:
+  workflow_call:
+    inputs:
+      testID:
+        default: "no test"
+        type: string
+
+jobs:
+    runTest:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Setup g++
+          run: sudo apt-get install -y g++
+        - name: Compile
+          run: make ex02
+        - name: run test1
+          run: |
+            ./C++/ex${{ github.event.inputs.testID }}/ex${{ github.event.inputs.testID }}.exe < testingFiles/C++/ex${{ github.event.inputs.testID }}/ex${{ github.event.inputs.testID }}.input1.txt > ${{ runner.temp }}/ex${{ github.event.inputs.testID }}.output1.txt
+            diff ${{ runner.temp }}/ex${{ github.event.inputs.testID }}.output1.txt testingFiles/C++/ex${{ github.event.inputs.testID }}/CorrectOutput/ex${{ github.event.inputs.testID }}.correct.output1.txt
