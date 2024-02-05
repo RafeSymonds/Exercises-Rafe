@@ -1,4 +1,4 @@
-name: C++ ex01a build, run, compare
+name: C++ Testing
 
 on:
   push:
@@ -7,15 +7,32 @@ on:
     branches: [ "main" ]
 
 jobs:
-  run_and_compile:
+  ex01a:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Install g++
       run: sudo apt-get install -y g++
-    - name: make
+    - name: make ex01a
       run: make all
     - name: run file
       run: ./C++/ex01a/ex01a.exe <.io/ex01a/ex01.input.txt > .io/ex01a/ex01.output.txt
     - name: compare results
       run: diff .io/ex01a/ex01.output.txt .io/ex01a/ex01.correct.output.txt
+
+  ex02:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup g++
+      run: sudo apt-get install -y g++
+    - name: Compile
+      run: make ex02
+    - name: run test1
+      run: |
+        ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input1.txt > ${{ runner.temp }}/ex02/output1.txt
+        diff ${{ runner.temp }}/ex02/output1.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output1.txt
+    - name: run test2
+      run: |
+        ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input2.txt > ${{ runner.temp }}/ex02/output2.txt
+        diff ${{ runner.temp }}/ex02/output2.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output2.txt
