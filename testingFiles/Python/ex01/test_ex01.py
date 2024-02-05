@@ -1,7 +1,7 @@
 import sys
-sys.path.append("......")
+sys.path.append("Python/ex01")
 
-from Python.ex01 import ex01
+import ex01
 
 def test_add():
     assert ex01.add(5,10) == 15
