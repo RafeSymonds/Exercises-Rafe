@@ -30,10 +30,8 @@ There are exercises for both C++ and Python.
 5. To run **every test** for **every exercise** run "python3 -m pytest"
 
 # Testing Guide
-1. Fork the GitHub to your own repository
-2. Clone your new GitHub repository to your local machine by using “git clone”
-3. Complete an exercise
-4. Once ready to check an exercise either
+1. Complete an exercise
+2. Once ready to check an exercise either
     1. Push to GitHub
     2. Locally check Python
         1. Run “python3 -m pip install pytest” to install pytest 
