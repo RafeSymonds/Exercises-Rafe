@@ -16,9 +16,9 @@ jobs:
     - name: make ex01a
       run: make all
     - name: run file
-      run: ./C++/ex01a/ex01a.exe < testingFiles/C++/ex01a/ex01.input1.txt > ${{ runner.temp }}/ex01.output1.txt
+      run: ./C++/ex01a/ex01a.exe < testingFiles/C++/ex01a/ex01a.input1.txt > ${{ runner.temp }}/ex01a.output1.txt
     - name: compare results
-      run: diff ${{ runner.temp }}/ex01.output1.txt testingFiles/C++/ex01/CorrectOutput/ex01.correct.output1.txt
+      run: diff ${{ runner.temp }}/ex01a.output1.txt testingFiles/C++/ex01a/CorrectOutput/ex01.correct.output1.txt
 
   ex02:
     runs-on: ubuntu-latest
