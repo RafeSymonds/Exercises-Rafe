@@ -2,11 +2,11 @@
 This is a repository for programing exercises in C++ and Python to give students practice in developing code.
 
 # How the Exercises Work
-* C++ and Python both have lots of exercises that can be completed one by one. Each exercise gets harder and bulids on the last. 
+* There are multiple exercises for both C++ and Python that can be completed one by one. Each exercise gets harder and bulids on the last. 
 
 * Code can be tested by pushing to GitHub and reading the output of the GitHub actions. Code can also be tested locally by following the commands in each exercise.
 
-* **If you plan on testing using GitHub**, we highly recommend the GitHub Actions extension for VSCode because it allows you to easily see your scores for each test in VSCode.
+* **If you plan on testing using GitHub**, we highly recommend the GitHub Actions extension for VSCode because it allows you to easily see your scores for each test in VSCode. To see specific error messages look at GitHub.
 
 
 # Setup Guide
