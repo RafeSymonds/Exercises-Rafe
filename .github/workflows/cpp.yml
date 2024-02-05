@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: ./.github/workflows/testing.yaml
+    - uses: ./.github/workflows/testing.yml
       with: 
         testID: "01"
     - name:
