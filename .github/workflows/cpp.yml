@@ -30,9 +30,9 @@ jobs:
       run: make ex02
     - name: run test1
       run: |
-        ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input1.txt > ${{ runner.temp }}/ex02/output1.txt
-        diff ${{ runner.temp }}/ex02/output1.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output1.txt
+        ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input1.txt > ${{ runner.temp }}/ex02.output1.txt
+        diff ${{ runner.temp }}/ex02.output1.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output1.txt
     - name: run test2
       run: |
-        ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input2.txt > ${{ runner.temp }}/ex02/output2.txt
-        diff ${{ runner.temp }}/ex02/output2.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output2.txt
+        ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input2.txt > ${{ runner.temp }}/ex02.output2.txt
+        diff ${{ runner.temp }}/ex02.output2.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output2.txt
