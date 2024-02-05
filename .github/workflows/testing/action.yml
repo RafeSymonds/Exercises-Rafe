@@ -4,6 +4,7 @@ on:
   workflow_call:
     inputs:
       testID:
+        required: true
         default: "no test"
         type: string
 
@@ -19,5 +20,5 @@ jobs:
           run: make ex02
         - name: run test1
           run: |
-            ./C++/ex${{ inputs.testID }}/ex${{ inputs.testID }}.exe < testingFiles/C++/ex${{ inputs.testID }}/ex${{ inputs.testID }}.input1.txt > ${{ runner.temp }}/ex${{ inputs.testID }}.output1.txt
-            diff ${{ runner.temp }}/ex${{ inputs.testID }}.output1.txt testingFiles/C++/ex${{ inputs.testID }}/CorrectOutput/ex${{ inputs.testID }}.correct.output1.txt
+            ./C++/ex${{ github.event.inputs.testID }}/ex${{ github.event.inputs.testID }}.exe < testingFiles/C++/ex${{ github.event.inputs.testID }}/ex${{ github.event.inputs.testID }}.input1.txt > ${{ runner.temp }}/ex${{ github.event.inputs.testID }}.output1.txt
+            diff ${{ runner.temp }}/ex${{ github.event.inputs.testID }}.output1.txt testingFiles/C++/ex${{ github.event.inputs.testID }}/CorrectOutput/ex${{ github.event.inputs.testID }}.correct.output1.txt
