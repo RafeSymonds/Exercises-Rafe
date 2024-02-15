@@ -51,7 +51,7 @@ jobs:
     - name: run test2
       run: |
         ./C++/ex03/ex03.exe < testingFiles/C++/ex03/ex03.input2.txt > ${{ runner.temp }}/ex03.output2.txt
-        diff ${{ runner.temp }}/ex03.output3.txt testingFiles/C++/ex03/CorrectOutput/ex03.correct.output2.txt
+        diff ${{ runner.temp }}/ex03.output2.txt testingFiles/C++/ex03/CorrectOutput/ex03.correct.output2.txt
     - name: run test3
       run: |
         ./C++/ex03/ex03.exe < testingFiles/C++/ex03/ex03.input3.txt > ${{ runner.temp }}/ex03.output3.txt
