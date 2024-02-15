@@ -36,17 +36,23 @@ jobs:
       run: |
         ./C++/ex02/ex02.exe < testingFiles/C++/ex02/ex02.input2.txt > ${{ runner.temp }}/ex02.output2.txt
         diff ${{ runner.temp }}/ex02.output2.txt testingFiles/C++/ex02/CorrectOutput/ex02.correct.output2.txt
-  
-  runAllTests:
+  ex03:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/checkout@v2
-    - uses: ./.github/workflows/testing
-      with: 
-        testID: "01"
-    - name:
+    - name: Setup g++
+      run: sudo apt-get install -y g++
+    - name: Compile
+      run: make ex03
+    - name: run test1
       run: |
-        for i in {1..5}; do
-          echo "Calling action with counter: $i"
-          name: "Step $i"
+        ./C++/ex03/ex03.exe < testingFiles/C++/ex03/ex03.input1.txt > ${{ runner.temp }}/ex03.output1.txt
+        diff ${{ runner.temp }}/ex03.output1.txt testingFiles/C++/ex03/CorrectOutput/ex03.correct.output1.txt
+    - name: run test2
+      run: |
+        ./C++/ex03/ex03.exe < testingFiles/C++/ex03/ex03.input2.txt > ${{ runner.temp }}/ex03.output2.txt
+        diff ${{ runner.temp }}/ex03.output3.txt testingFiles/C++/ex03/CorrectOutput/ex03.correct.output2.txt
+    - name: run test3
+      run: |
+        ./C++/ex03/ex03.exe < testingFiles/C++/ex03/ex03.input3.txt > ${{ runner.temp }}/ex03.output3.txt
+        diff ${{ runner.temp }}/ex03.output3.txt testingFiles/C++/ex03/CorrectOutput/ex03.correct.output3.txt
