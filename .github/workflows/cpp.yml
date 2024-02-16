@@ -117,3 +117,23 @@ jobs:
       run: |
         ./C++/ex06/ex06.exe < testingFiles/C++/ex06/ex06.input3.txt > ${{ runner.temp }}/ex06.output3.txt
         diff ${{ runner.temp }}/ex06.output3.txt testingFiles/C++/ex06/CorrectOutput/ex06.correct.output3.txt
+  ex07:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup g++
+      run: sudo apt-get install -y g++
+    - name: Compile
+      run: make ex07
+    - name: run test1
+      run: |
+        ./C++/ex07/ex07.exe < testingFiles/C++/ex07/ex07.input1.txt > ${{ runner.temp }}/ex07.output1.txt
+        diff ${{ runner.temp }}/ex07.output1.txt testingFiles/C++/ex07/CorrectOutput/ex07.correct.output1.txt
+    - name: run test2
+      run: |
+        ./C++/ex07/ex07.exe < testingFiles/C++/ex07/ex07.input2.txt > ${{ runner.temp }}/ex07.output2.txt
+        diff ${{ runner.temp }}/ex07.output2.txt testingFiles/C++/ex07/CorrectOutput/ex07.correct.output2.txt
+    - name: run test3
+      run: |
+        ./C++/ex07/ex07.exe < testingFiles/C++/ex07/ex07.input3.txt > ${{ runner.temp }}/ex07.output3.txt
+        diff ${{ runner.temp }}/ex07.output3.txt testingFiles/C++/ex07/CorrectOutput/ex07.correct.output3.txt
