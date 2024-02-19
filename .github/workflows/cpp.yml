@@ -7,18 +7,18 @@ on:
     branches: [ "main" ]
 
 jobs:
-  ex01a:
+  ex01:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Install g++
       run: sudo apt-get install -y g++
-    - name: make ex01a
+    - name: make ex01
       run: make all
     - name: run file
-      run: ./C++/ex01a/ex01a.exe < testingFiles/C++/ex01a/ex01a.input1.txt > ${{ runner.temp }}/ex01a.output1.txt
+      run: ./C++/ex01/ex01.exe < ${{ runner.temp }}/ex01.output1.txt
     - name: compare results
-      run: diff ${{ runner.temp }}/ex01a.output1.txt testingFiles/C++/ex01a/CorrectOutput/ex01a.correct.output1.txt
+      run: diff ${{ runner.temp }}/ex01.output1.txt testingFiles/C++/ex01/CorrectOutput/ex01.correct.output1.txt
 
   ex02:
     runs-on: ubuntu-latest
