@@ -16,7 +16,7 @@ jobs:
     - name: make ex01
       run: make all
     - name: run file
-      run: ./C++/ex01/ex01.exe < ${{ runner.temp }}/ex01.output1.txt
+      run: ./C++/ex01/ex01.exe > ${{ runner.temp }}/ex01.output1.txt
     - name: compare results
       run: diff ${{ runner.temp }}/ex01.output1.txt testingFiles/C++/ex01/CorrectOutput/ex01.correct.output1.txt
 
