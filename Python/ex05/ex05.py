@@ -1,7 +1,4 @@
-import math
-import statistics
-
-def fibonacciCalculator(index: int):
+def fibonacciCalculator(index: int) -> int:
     counter = 3
     values = [0, 1, 1]
     while(counter < index + 1):
@@ -9,7 +6,7 @@ def fibonacciCalculator(index: int):
         counter += 1
     return values[index]
 
-# add your own tests below and run with "python3 Python/ex01/ex01.py"
+# add your own tests below and run with "python3 Python/ex05/ex05.py"
 # no output means your tests passed
 # tests can look like this or you can print them
 # assert(fibonacciCalculator(1) == 1)
