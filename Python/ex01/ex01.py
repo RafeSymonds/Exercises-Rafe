@@ -1,25 +1,17 @@
-import math
-import statistics
+def fibonacciCalculator(index: int):
+    counter = 3
+    values = [0, 1, 1]
+    while(counter < index + 1):
+        values.append(values[counter-1] + values[counter-2])
+        counter += 1
+    return values[index]
+    
 
-def add(num1, num2):
-    return num1 + num2
+
+# add your own tests below and run with "python3 Python/ex01/ex01.py"
+# no output means your tests passed
+# tests can look like this or you can print them
+# assert(fibonacciCalculator(1) == 1)
 
 
-# return mean of numbers
-# reutnr 0 if numbers is empty
-def average(numbers):
-    if(len(numbers) == 0): return 0
-    return sum(numbers) / len(numbers)
 
-def modeFunction(numbers):
-    return statistics.mode(numbers)
-
-def medianFunction(numbers):
-    numbers.sort()
-    if(len(numbers) % 2 == 0):
-        return (numbers[int(len(numbers) / 2) - 1] + numbers[int(len(numbers) / 2)]) / 2
-    else:
-        return numbers[int(len(numbers) / 2)]
-
-def percentile(numbers):
-    return
