@@ -1,0 +1,26 @@
+name: C++ Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ex??:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup g++
+      run: sudo apt-get install -y g++
+    - name: Compile
+      run: make ex??
+    - name: run test1
+      run: |
+        ./C++/ex??/ex??.exe < testingFiles/C++/ex??/ex??.input1.txt > ${{ runner.temp }}/ex??.output1.txt
+        diff ${{ runner.temp }}/ex??.output1.txt testingFiles/C++/ex??/CorrectOutput/ex??.correct.output1.txt
+    - name: run test2
+      run: |
+        ./C++/ex??/ex??.exe < testingFiles/C++/ex??/ex??.input2.txt > ${{ runner.temp }}/ex??.output2.txt
+        diff ${{ runner.temp }}/ex??.output2.txt testingFiles/C++/ex??/CorrectOutput/ex??.correct.output2.txt
+  
