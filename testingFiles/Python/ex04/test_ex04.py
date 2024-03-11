@@ -1,7 +1,4 @@
-import sys
-sys.path.append("Python/ex04")
-
-import ex04
+from Python.ex04 import ex04
 
 def test_fibonacciCalculator():
     assert ex04.mergeArrays([1],[1]) == [1,1]
