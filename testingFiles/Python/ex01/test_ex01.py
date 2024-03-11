@@ -1,6 +1,3 @@
-import sys
-
-sys.path.append("....")
 from Python.ex01 import ex01
 
 def test_mean():
