@@ -1,3 +1,11 @@
+# Overview
+To create an exercise that is automatically tested with GitHub actions, you will need to
+>Create an instruction file  
+Create a starter file  
+Create test files for C++ or test cases for Python  
+Create correct output files for C++
+
+
 # Exercise Creation Guide
 In order to create an exercise there are 4 major parts. Your exercise should follow the naming convention `ex` followed by the next number (example: `ex01`).  
 For these instructions we will call the exercise name `ex??`, and you should chnage the `??` to your specific exercise number.
@@ -32,3 +40,5 @@ To add new run commands replace the `*`s with the input number in the run comman
 >run: |  
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./C++/ex??/ex??.exe < testingFiles/C++/ex??/ex??.input*.txt > \${{ runner.temp }}/ex??.output*.txt  
 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;diff \${{ runner.temp }}/ex??.output*.txt testingFiles/C++/ex??/CorrectOutput/ex??.correct.output*.txt
+
+
