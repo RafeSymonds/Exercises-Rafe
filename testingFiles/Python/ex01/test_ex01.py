@@ -1,4 +1,4 @@
-from Python.ex01 import ex01
+from PythonExercises.ex01 import ex01
 
 def test_mean():
     assert ex01.mean([1,2]) == 1.5

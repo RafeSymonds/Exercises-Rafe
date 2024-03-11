@@ -1,4 +1,4 @@
-from Python.ex02 import ex02
+from PythonExercises.ex02 import ex02
 
 def test_1():
     student1 = ex02.Student("Alice")

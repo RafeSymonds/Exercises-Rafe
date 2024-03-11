@@ -1,4 +1,4 @@
-from Python.ex04 import ex04
+from PythonExercises.ex04 import ex04
 
 def test_fibonacciCalculator():
     assert ex04.mergeArrays([1],[1]) == [1,1]
