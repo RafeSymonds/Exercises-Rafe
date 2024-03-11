@@ -5,6 +5,18 @@ Create a starter file
 
 ![Local Image](starterFileExample.png)
 
+  
+>Create C++ test cases  
+Create input and output redirection  
+Place in the specific exercise folder in `testingFiles/C++`
+
+![Local Image](c++TestCases.png)
+
+>Create Python test cases
+Create a Python file and create a function starting with the word `test`  
+Place in the specific exercise folder in `testingFiles/Python`
+![Local Image](pythonTestCases.png)
+
 # Exercise Creation Guide
 In order to create an exercise there are 4 major parts. Your exercise should follow the naming convention `ex` followed by the next number (example: `ex01`).  
 For these instructions we will call the exercise name `ex??`, and you should chnage the `??` to your specific exercise number.
@@ -22,6 +34,7 @@ C++ testing utilizes file redirection for input and output. Therefore, correct o
 
 ### Python Test Cases
 Python tests are established using the PyTest framework. The verification process involves ensuring the output from specific functions is accurate through the use of `assert` commands.
+![Local Image](pythonTestCaseExample.png)
 
 ## GitHub Workflow File for Autograding
 The example GitHub Workflows are in the `SetUp` folder.
