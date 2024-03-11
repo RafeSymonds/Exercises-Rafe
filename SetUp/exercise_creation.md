@@ -2,9 +2,8 @@
 To create an exercise that is automatically tested with GitHub actions, you will need to
 >Create an instruction file  
 Create a starter file  
-Create test files for C++ or test cases for Python  
-Create correct output files for C++
 
+![Local Image](starterFileExample.png)
 
 # Exercise Creation Guide
 In order to create an exercise there are 4 major parts. Your exercise should follow the naming convention `ex` followed by the next number (example: `ex01`).  

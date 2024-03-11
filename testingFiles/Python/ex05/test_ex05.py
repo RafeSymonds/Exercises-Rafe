@@ -13,3 +13,4 @@ def test_fibonacciCalculator():
     assert ex05.fibonacciCalculator(6) == 8
     assert ex05.fibonacciCalculator(7) == 13
     assert ex05.fibonacciCalculator(8) == 21
+    assert ex05.fibonacciCalculator(29) == 514229
