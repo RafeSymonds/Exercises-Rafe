@@ -76,7 +76,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run tests
       run: pytest testingFiles/Python/ex04/test_ex04.py
-  ex06:
+  ex05:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -96,4 +96,4 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run tests
-      run: pytest testingFiles/Python/ex06/test_ex06.py
+      run: pytest testingFiles/Python/ex05/test_ex05.py
