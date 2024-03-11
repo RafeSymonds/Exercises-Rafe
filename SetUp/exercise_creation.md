@@ -15,6 +15,7 @@ Place in the specific exercise folder in `testingFiles/C++`
 >Create Python test cases
 Create a Python file and create a function starting with the word `test`  
 Place in the specific exercise folder in `testingFiles/Python`
+
 ![Local Image](pythonTestCases.png)
 
 # Exercise Creation Guide
@@ -34,6 +35,7 @@ C++ testing utilizes file redirection for input and output. Therefore, correct o
 
 ### Python Test Cases
 Python tests are established using the PyTest framework. The verification process involves ensuring the output from specific functions is accurate through the use of `assert` commands.
+
 ![Local Image](pythonTestCaseExample.png)
 
 ## GitHub Workflow File for Autograding
