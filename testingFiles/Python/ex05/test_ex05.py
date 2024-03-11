@@ -1,4 +1,7 @@
-from Python.ex05 import ex05
+import sys
+sys.path.append("Python/ex05")
+
+import ex05
 
 def test_fibonacciCalculator():
     assert ex05.fibonacciCalculator(0) == 0
