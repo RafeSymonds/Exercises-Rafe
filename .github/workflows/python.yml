@@ -36,7 +36,7 @@ jobs:
       run: |
         pwd
     - name: Run tests
-      run: pytest testingFiles/Python/ex01/test_ex01.py
+      run: pytest test_ex01.py
   ex02:
     runs-on: ubuntu-latest
     steps:
