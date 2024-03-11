@@ -36,7 +36,11 @@ C++ testing utilizes file redirection for input and output. Therefore, correct o
 ### Python Test Cases
 Python tests are established using the PyTest framework. The verification process involves ensuring the output from specific functions is accurate through the use of `assert` commands.
 
+The test functions must start with the word `test` 
+
 ![Local Image](pythonTestCaseExample.png)
+
+[Pytest Guide](https://docs.pytest.org/en/latest/contents.html)
 
 ## GitHub Workflow File for Autograding
 The example GitHub Workflows are in the `SetUp` folder.
