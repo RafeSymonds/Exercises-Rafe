@@ -1,21 +1,21 @@
 # Overview
 To create an exercise that is automatically tested with GitHub actions, you will need to
 
-**Create an instruction file**  
-**Create a starter file**  
+* Create an instruction file  
+* Create a starter file
 
 ![Local Image](starterFileExample.png)
 
   
-**Create C++ test cases**  
-**Create input and output redirection**  
-**Place in the specific exercise folder in `testingFiles/C++`**
+* Create C++ test cases  
+* Create input and output redirection  
+* Place in the specific exercise folder in `testingFiles/C++`
 
 ![Local Image](c++TestCases.png)
 
-**Create Python test cases**
-**Create a Python file and create a function starting with the word `test`**  
-**Place in the specific exercise folder in `testingFiles/Python`**
+* Create Python test cases
+* Create a Python file and create a function starting with the word `test`  
+* Place in the specific exercise folder in `testingFiles/Python`
 
 ![Local Image](pythonTestCases.png)
 
