@@ -4,20 +4,20 @@ To create an exercise that is automatically tested with GitHub actions, you will
 * Create an instruction file  
 * Create a starter file
 
-![Local Image](starterFileExample.png)
+![Local Image](screenshots/starterFileExample.png)
 
   
 * Create C++ test cases  
 * Create input and output redirection  
 * Place in the specific exercise folder in `testingFiles/C++`
 
-![Local Image](c++TestCases.png)
+![Local Image](screenshots/c++TestCases.png)
 
 * Create Python test cases
 * Create a Python file and create a function starting with the word `test`  
 * Place in the specific exercise folder in `testingFiles/Python`
 
-![Local Image](pythonTestCases.png)
+![Local Image](screenshots/pythonTestCases.png)
 
 # Exercise Creation Guide
 In order to create an exercise there are 4 major parts. Your exercise should follow the naming convention `ex` followed by the next number (example: `ex01`).  
@@ -39,7 +39,7 @@ Python tests are established using the PyTest framework. The verification proces
 
 The test functions must start with the word `test` 
 
-![Local Image](pythonTestCaseExample.png)
+![Local Image](screenshots/pythonTestCaseExample.png)
 
 [Pytest Guide](https://docs.pytest.org/en/latest/contents.html)
 
