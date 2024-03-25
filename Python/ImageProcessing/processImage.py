@@ -28,7 +28,7 @@ def generateGrid():
         starValues = []
         regions = np.zeros((10,10), dtype=np.int32)
         filledLocations = [deque() for _ in range(20)]
-        generatStars(regions, filledLocations, starLocations, starValues)
+        generateStars(regions, filledLocations, starLocations, starValues)
 
         starLocations.sort(key=lambda position: (position[0],position[1]))
 
@@ -63,9 +63,11 @@ def generateGrid():
     solution = generateSolution(regions)
     print(solution)
     
+    print('Is valid solution: ', validateSolution(regions, solution))
+
     return (regions, solution)
 
-def generatStars(regions, filledLocations, starLocations, starValues):
+def generateStars(regions, filledLocations, starLocations, starValues):
     starRows = [0] * 10
     starColumns = [0] * 10
     starsLeft = 1
@@ -265,82 +267,6 @@ def generateGridImage(gridAndSolution):
 
     return grid
     
-
-
-def bruteForcegenerateSolution(regions):
-    starLocations = np.zeros((10,10), dtype=np.int32)
-
-    starCount = 0
-
-    regionCounter = [0] * 11
-    rowCounter = [0] * 10
-    columnCounter = [0] * 10
-    stack = deque()
-    stack.append((0,0))
-    visited = dict()
-
-    bestStarCount = 0
-
-    while(len(stack) > 0):
-
-        y,x = stack[-1]
-        row = 0
-        column = 0
-        
-        if(starLocations[y,x] == 0):
-            rowCounter[y]+= 1
-            columnCounter[x] += 1
-            regionCounter[regions[y,x]] += 1
-            starLocations[y,x] = 1
-            starCount += 1
-            row = y
-            column = x + 1
-        else:
-            row = visited[(y,x)][0]
-            column = visited[(y,x)][1] + 1
-            
-        if(column == 10):
-            row += 1
-            column = 0
-        
-
-        if(starCount == 20):
-            return starLocations
-        
-        if(starCount > bestStarCount):
-            print("Current best number of stars", starCount)
-            bestStarCount = starCount
-
-        addedStar = False
-        while row < 10:
-            if(rowCounter[row] >= 2):
-                row += 1
-                continue
-            while column < 10:
-                if(columnCounter[column] < 2 and regionCounter[regions[row,column]] < 2):
-                    visited[(y,x)] = (row,column)
-                    visited[(row,column)] = (row,column)
-                    stack.append((row,column))
-                    addedStar = True
-                    break
-                column += 1
-            if(addedStar):
-                break    
-            column = 0
-            row += 1
-        
-
-        if(not addedStar):
-            starCount -= 1
-            stack.pop()
-            rowCounter[y] -= 1
-            columnCounter[x] -= 1
-            regionCounter[regions[y,x]] -= 1
-            starLocations[y,x] = 0
-            del visited[(y,x)]
-         
-    return starLocations
-
 def generateSolution(regions):
     starLocations = np.zeros((10,10), dtype=np.int32)
 
@@ -354,6 +280,8 @@ def generateSolution(regions):
     column = 0
 
     startColumn = 1
+
+    backtrackingCount = 0
 
     while(starCount < 20):
         while(row < 10 and rowCounter[row] < 2):
@@ -370,24 +298,24 @@ def generateSolution(regions):
                 column += 1
             # we hit a road block go back because we only have 1 in column
             if(not foundSpot):
+                y,x = stack.pop()
                 if(len(stack) == 0):
                     row = 0
                     column = startColumn
                     startColumn += 1
                     break
-                y,x = stack.pop()
                 unsetSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, y, x)
+                backtrackingCount += 1
+                
                 starCount -= 1
                 column = x + 1
                 row = y
 
-                
-        column = 0
-        row += 1
+        if(len(stack) != 0):
+            column = 0
+            row += 1
 
-
-
-
+    print(backtrackingCount)
     return starLocations
 
 def setSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column):
@@ -401,6 +329,29 @@ def unsetSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, 
     rowCounter[row]-= 1
     columnCounter[column] -= 1
     regionCounter[regions[row,column]] -= 1
+
+def validateSolution(regions, solution) -> bool:
+    regionCounter = [0] * 11
+    regionCounter[0] = 2
+    rowCounter = [0] * 10
+    columnCounter = [0] * 10
+    for row in range(10):
+        for column in range(10):
+            if(solution[row,column] == 1):
+                regionCounter[regions[row,column]] += 1
+                rowCounter[row] += 1
+                columnCounter[column] += 1
+
+    for row in rowCounter:
+        if(row != 2):
+            return False
+    for column in columnCounter:
+        if(column != 2):
+            return False
+    for region in regionCounter:
+        if(region != 2):
+            return False
+    return True
 
 def findWhiteSpots(img) -> list:
     whiteSpots = []
