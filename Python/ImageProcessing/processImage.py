@@ -368,9 +368,7 @@ def validateSolution(regions, solution) -> bool:
 
 
 def generateRegionsFromImage(img):
-    print(len(img))
-    print(len(img[0]))
-
+    
     #displayImage(img)
 
     regions = np.zeros((10,10), dtype=np.int32)
@@ -404,28 +402,47 @@ def generateRegionsFromImage(img):
 
     imageSize = endColumn - startColumn
 
-    lineSize = 3
+    lineSize = 0
+    while img[startRow + lineSize, startColumn + lineSize, 0] == 0:
+        lineSize += 1
+
+
+    print('Line size:', lineSize)
     squareSize = int((imageSize - lineSize * 11 + 1)/10)
 
     
-    startRow += lineSize
+    startRow += int(lineSize + squareSize / 2)
 
 
 
     print(startRow)
-    print(img[startRow , startColumn])
+    print(img[startRow, startColumn])
     print(img[startRow+ 10, startColumn + 10, 0])
 
     for row in range(0,10):
         for column in range(1, 10):
-            if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column, 0] == 1.0 and img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column - 1, 0] == 1.0 and img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column + 1, 0] == 1.0):
+            if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column, 0] != 1.0):
+                continue
+            line = False
+            for distance in range(1,6):
+                if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column - distance, 0] != 1.0 or img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column + distance, 0] != 1.0):
+                    line = True
+                    break
+            if(not line):
                 regions[row, column] = regions[row, column - 1]
-    
-    startRow -= lineSize
-    startColumn += lineSize
+                
+    startRow -= int(lineSize + squareSize / 2)
+    startColumn += int(lineSize + squareSize / 2)
     for column in range(0,10):
         for row in range(1, 10):
-            if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column, 0] == 1 and img[startRow + row * (squareSize + lineSize) - 1, startColumn + (squareSize + lineSize) * column, 0] == 1 and img[startRow + row * (squareSize + lineSize) + 1, startColumn + (squareSize + lineSize) * column, 0] == 1):
+            if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column, 0] != 1.0):
+                continue
+            line = False
+            for distance in range(1,6):
+                if(img[startRow + row * (squareSize + lineSize) - distance, startColumn + (squareSize + lineSize) * column, 0] != 1.0 or img[startRow + row * (squareSize + lineSize) + distance, startColumn + (squareSize + lineSize) * column, 0] != 1.0):
+                    line = True
+                    break
+            if(not line):
                 joinTwoSections(regions, regions[row, column], regions[row - 1, column])
                 #regions[row, column] = regions[row - 1, column]
     
@@ -437,6 +454,7 @@ def solvePuzzle(fileName):
     img = returnImage(fileName)
 
     regions = generateRegionsFromImage(img)
+    print(regions)
     solution = generateSolution(regions)
     newImg = generateGridImage((regions,solution))
 
@@ -457,4 +475,4 @@ def solvePuzzle(fileName):
 # img = generateGridImage(gridAndSolution)
 # saveImg(img, 2)
 
-solvePuzzle('Python/ImageProcessing/test1.png')
+solvePuzzle('Python/ImageProcessing/test4_input.png')
