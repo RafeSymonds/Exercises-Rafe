@@ -12,14 +12,17 @@ def displayImage(img):
     plt.imshow(img)
     plt.axis('off')
     plt.show()
-
+def saveImg(img, num):
+    plt.imshow(img)
+    plt.axis('off')
+    plt.savefig("test" + str(num) + ".png")
 
 def generateGrid():
     
     starLocations = []
     starValues = []    
     regions = np.zeros((10,10), dtype=np.int32)
-    filledLocations = [deque() for _ in range(20)]
+    filledLocations = [deque() for i in range(20)]
     valid = False
 
     while(valid == False):
@@ -51,14 +54,14 @@ def generateGrid():
         print(endLocations)
         valid = findMultipleValidPaths(regions, startLocations, endLocations)
            
-    for y,x in starLocations:
-        pass
-        #regions[y,x] = -1
-
     fillZeroRegions(regions)
 
     
     print(regions)
+
+    tempImg = generateGridImage((regions, []))
+    saveImg(tempImg, 1)
+
 
     solution = generateSolution(regions)
     print(solution)
@@ -249,21 +252,21 @@ def generateGridImage(gridAndSolution):
     for row in range(10):
         for column in range(10):
             if(row < 9 and column < 10 and gridRegions[row,column] != gridRegions[row + 1, column]):
-                for fillRow in range(1, squareSize + 1):
+                for fillRow in range(1, squareSize + 2):
                     grid[startY + (row + 1) * 10, startX + column*10 + fillRow] = [0,0,0]
             if(row < 10 and column < 9 and gridRegions[row,column] != gridRegions[row, column + 1]):
-                for fillRow in range(1, squareSize + 1):
+                for fillRow in range(1, squareSize + 2):
                     grid[startY + row * 10 + fillRow, startX + (column + 1)*10] = [0,0,0]
 
-
-    for row in range(10):
-        for column in range(10):
-            if(solution[row,column] == 1):
-                grid[startY + row * 10 + 5, startX + column * 10 + 5] = [0,0,0]
-                grid[startY + row * 10 + 5 - 1, startX + column * 10 + 5] = [0,0,0]
-                grid[startY + row * 10 + 5 + 1, startX + column * 10 + 5] = [0,0,0]
-                grid[startY + row * 10 + 5, startX + column * 10 + 5 - 1] = [0,0,0]
-                grid[startY + row * 10 + 5, startX + column * 10 + 5 + 1] = [0,0,0]
+    if(len(solution) > 0):
+        for row in range(10):
+            for column in range(10):
+                if(solution[row,column] == 1):
+                    grid[startY + row * 10 + 5, startX + column * 10 + 5] = [0,0,0]
+                    grid[startY + row * 10 + 5 - 1, startX + column * 10 + 5] = [0,0,0]
+                    grid[startY + row * 10 + 5 + 1, startX + column * 10 + 5] = [0,0,0]
+                    grid[startY + row * 10 + 5, startX + column * 10 + 5 - 1] = [0,0,0]
+                    grid[startY + row * 10 + 5, startX + column * 10 + 5 + 1] = [0,0,0]
 
     return grid
     
@@ -271,6 +274,14 @@ def generateSolution(regions):
     starLocations = np.zeros((10,10), dtype=np.int32)
 
     starCount = 0
+
+    regionValues = dict()
+    counter = 1
+    for row in range(10):
+        for column in range(10):
+            if(regions[row,column] not in regionValues):
+                regionValues[regions[row,column]] = counter
+                counter += 1
 
     regionCounter = [0] * 11
     rowCounter = [0] * 10
@@ -287,9 +298,10 @@ def generateSolution(regions):
         while(row < 10 and rowCounter[row] < 2):
             foundSpot = False
             while column < 10:
-                if(starLocations[row,column] == 0 and regionCounter[regions[row,column]] < 2 and columnCounter[column] < 2):
+                regionValue = regionValues[regions[row,column]]
+                if(starLocations[row,column] == 0 and regionCounter[regionValue] < 2 and columnCounter[column] < 2):
                     # chooose spot
-                    setSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column)
+                    setSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column, regionValue)
                     starCount += 1
                     stack.append((row,column))
                     
@@ -304,7 +316,8 @@ def generateSolution(regions):
                     column = startColumn
                     startColumn += 1
                     break
-                unsetSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, y, x)
+                regionValue = regionValues[regions[y,x]]
+                unsetSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, y, x, regionValue)
                 backtrackingCount += 1
                 
                 starCount -= 1
@@ -318,17 +331,17 @@ def generateSolution(regions):
     print(backtrackingCount)
     return starLocations
 
-def setSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column):
+def setSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column, regionValue):
     starLocations[row,column] = 1
     rowCounter[row]+= 1
     columnCounter[column] += 1
-    regionCounter[regions[row,column]] += 1
+    regionCounter[regionValue] += 1
     
-def unsetSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column):
+def unsetSpot(regions, starLocations, rowCounter, columnCounter, regionCounter, row, column, regionValue):
     starLocations[row,column] = 0
     rowCounter[row]-= 1
     columnCounter[column] -= 1
-    regionCounter[regions[row,column]] -= 1
+    regionCounter[regionValue] -= 1
 
 def validateSolution(regions, solution) -> bool:
     regionCounter = [0] * 11
@@ -353,14 +366,81 @@ def validateSolution(regions, solution) -> bool:
             return False
     return True
 
-def findWhiteSpots(img) -> list:
-    whiteSpots = []
-    for y, row in enumerate(img):
-        for x, pixel_values in enumerate(row):
 
-            if np.all(pixel_values >= 0.1):
-                whiteSpots.append((y,x))
-    return whiteSpots
+def generateRegionsFromImage(img):
+    print(len(img))
+    print(len(img[0]))
+
+    #displayImage(img)
+
+    regions = np.zeros((10,10), dtype=np.int32)
+
+    for row in range(10):
+        for column in range(10):
+            regions[row,column] = row * 10 + column + 1
+
+
+    startRow = 0
+    startColumn = 0
+    
+
+    while startRow < len(img):
+        foundStart = False
+        startColumn = 0
+        while startColumn < len(img[0]):
+            if(img[startRow,startColumn, 0] < 1):
+                foundStart = True
+                break
+            startColumn += 1
+        if(foundStart):
+            break
+        startRow += 1
+    
+    endColumn = startColumn
+    while(endColumn < len(img[0])):
+        if(img[startRow, endColumn, 0] == 1):
+            break
+        endColumn += 1 
+
+    imageSize = endColumn - startColumn
+
+    lineSize = 3
+    squareSize = int((imageSize - lineSize * 11 + 1)/10)
+
+    
+    startRow += lineSize
+
+
+
+    print(startRow)
+    print(img[startRow , startColumn])
+    print(img[startRow+ 10, startColumn + 10, 0])
+
+    for row in range(0,10):
+        for column in range(1, 10):
+            if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column, 0] == 1.0 and img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column - 1, 0] == 1.0 and img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column + 1, 0] == 1.0):
+                regions[row, column] = regions[row, column - 1]
+    
+    startRow -= lineSize
+    startColumn += lineSize
+    for column in range(0,10):
+        for row in range(1, 10):
+            if(img[startRow + row * (squareSize + lineSize), startColumn + (squareSize + lineSize) * column, 0] == 1 and img[startRow + row * (squareSize + lineSize) - 1, startColumn + (squareSize + lineSize) * column, 0] == 1 and img[startRow + row * (squareSize + lineSize) + 1, startColumn + (squareSize + lineSize) * column, 0] == 1):
+                joinTwoSections(regions, regions[row, column], regions[row - 1, column])
+                #regions[row, column] = regions[row - 1, column]
+    
+
+    return regions
+
+def solvePuzzle(fileName):
+
+    img = returnImage(fileName)
+
+    regions = generateRegionsFromImage(img)
+    solution = generateSolution(regions)
+    newImg = generateGridImage((regions,solution))
+
+    displayImage(newImg)
 
 # img = returnImage('testingFiles/Python/imageProcessing/example.png')
 
@@ -373,6 +453,8 @@ def findWhiteSpots(img) -> list:
 # displayImage(img)
 
 
-gridAndSolution = generateGrid()
-img = generateGridImage(gridAndSolution)
-displayImage(img)
+# gridAndSolution = generateGrid()
+# img = generateGridImage(gridAndSolution)
+# saveImg(img, 2)
+
+solvePuzzle('Python/ImageProcessing/test1.png')
