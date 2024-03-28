@@ -12,13 +12,13 @@ def displayImage(img):
     plt.imshow(img)
     plt.axis('off')
     plt.show()
+
 def saveImg(img, num):
     plt.imshow(img)
     plt.axis('off')
     plt.savefig("test" + str(num) + ".png")
 
 def generateGrid():
-    
     starLocations = []
     starValues = []    
     regions = np.zeros((10,10), dtype=np.int32)

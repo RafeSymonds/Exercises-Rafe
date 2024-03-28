@@ -4,7 +4,7 @@ In this exercise you will be creating a Python program that creates, solves, val
 
 This is an example of a Star Battle grid.
 
-![Local Image](example.png)
+![Local Image](Examples/example.png)
 
 A Star Battle puzzle consists of a 10 by 10 grid with 10 regions of varying sizes.
 
@@ -42,13 +42,13 @@ You will also need to read in images and create your own image with a star place
 
 The main idea is to create a 10 by 10 grid that represents the the different regions. 
 
-![Local Image](exampleGrid.png)
+![Local Image](Examples/exampleGrid.png)
 
 The different numbers correspond to different regions.
 
 For simplicity, your puzzles will not have lines between squares unless there is a region divide.
 
-![Local Image](test1.png)
+![Local Image](TestCases/test1_input.png)
 
 ### Reading in a Puzzle
 * The placement of each puzzle varies in each image, so you will need to detect where the puzzle is. 
