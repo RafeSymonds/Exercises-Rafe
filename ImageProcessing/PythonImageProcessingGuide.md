@@ -16,7 +16,7 @@ import matplotlib.image as mpimg
 import numpy as np
 ```
 
-**Matplotlib:** A versatile plotting library for creating static, animated, and interactive visualizations in Python.
+**Matplotlib:** A versatile plotting library for creating static, animated, and interactive visualizations in Python. [Matplotlib Tutorial](https://matplotlib.org/stable/tutorials/images.html)
 
 **NumPy:** A fundamental package for scientific computing with Python. It provides support for multidimensional arrays and matrices, along with mathematical functions to operate on these arrays.
 

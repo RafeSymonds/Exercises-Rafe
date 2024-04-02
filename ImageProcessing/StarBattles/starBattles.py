@@ -18,7 +18,7 @@ def saveImg(img, num):
     plt.axis('off')
     plt.savefig("test" + str(num) + ".png")
 
-def generateGrid():
+def generateStarBattlesGrid():
     starLocations = []
     starValues = []    
     regions = np.zeros((10,10), dtype=np.int32)
@@ -348,10 +348,18 @@ def validateSolution(regions, solution) -> bool:
     regionCounter[0] = 2
     rowCounter = [0] * 10
     columnCounter = [0] * 10
+    regionValues = dict()
+    counter = 1
+    for row in range(10):
+        for column in range(10):
+            if(regions[row,column] not in regionValues):
+                regionValues[regions[row,column]] = counter
+                counter += 1
+    
     for row in range(10):
         for column in range(10):
             if(solution[row,column] == 1):
-                regionCounter[regions[row,column]] += 1
+                regionCounter[regionValues[regions[row,column]]] += 1
                 rowCounter[row] += 1
                 columnCounter[column] += 1
 
@@ -456,6 +464,7 @@ def solvePuzzle(fileName):
     regions = generateRegionsFromImage(img)
     print(regions)
     solution = generateSolution(regions)
+    print(solution)
     newImg = generateGridImage((regions,solution))
 
     displayImage(newImg)
@@ -475,4 +484,4 @@ def solvePuzzle(fileName):
 # img = generateGridImage(gridAndSolution)
 # saveImg(img, 2)
 
-solvePuzzle('Python/ImageProcessing/test4_input.png')
+# solvePuzzle('ImageProcessing/StarBattles/TestCases/test4_input.png')
