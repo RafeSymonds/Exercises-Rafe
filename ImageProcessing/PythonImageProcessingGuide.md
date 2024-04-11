@@ -16,9 +16,10 @@ import matplotlib.image as mpimg
 import numpy as np
 ```
 
+
 **Matplotlib:** A versatile plotting library for creating static, animated, and interactive visualizations in Python. [Matplotlib Tutorial](https://matplotlib.org/stable/tutorials/images.html)
 
-**NumPy:** A fundamental package for scientific computing with Python. It provides support for multidimensional arrays and matrices, along with mathematical functions to operate on these arrays.
+**NumPy:** A fundamental package for scientific computing with Python. It provides support for multidimensional arrays and matrices, along with mathematical functions to operate on these arrays. [NumPy Tutorial](https://numpy.org/doc/stable/user/)
 
 ```python
 # Load image
@@ -29,7 +30,7 @@ plt.imshow(img)
 plt.axis('off')  # Hide axis
 plt.show()
 ```
-Image Manipulation
+Get Pixel Data
 ```python
 # Extracting RGB channels
 red_channel = img[:, :, 0]
@@ -49,4 +50,4 @@ blue_value = img[row, column, 2]
 ## The Challenge of Detecting Edges
 In projects like Star Battles, where precise edge detection is crucial, even minor deviations can significantly impact the outcome. Detecting 1-pixel edges requires extreme accuracy, as being off by just 1 value can lead to misidentification or distortion of the underlying structures.
 
-To address the challenge of detecting edges with pixel-perfect accuracy, especially in scenarios like the Star Battles project, where precision is crucial, one strategy is to check a range of pixels around the expected edge position. This approach allows for flexibility in edge detection and helps compensate for potential deviations by accommodating a small margin of error.
+One strategy to address the challenge of detecting edges with pixel-perfect accuracy is to check a range of pixels around the expected edge position. This approach allows for flexibility in edge detection and helps compensate for potential deviations by accommodating a small margin of error.

@@ -1,4 +1,4 @@
-import starBattles
+import starBattlesSolution as starBattlesSolution
 import numpy as np
 
 
@@ -147,44 +147,42 @@ test4IncorrectSolution = np.array([
     [0, 0, 0, 0, 0, 1, 1, 0, 0, 0]])
 
 def test_validate():
-    assert starBattles.validateSolution(test1Regions, test1CorrectSolution) == True
-    assert starBattles.validateSolution(test1Regions, test1IncorrectSolution) == False
-    assert starBattles.validateSolution(test2Regions, test2CorrectSolution) == True
-    assert starBattles.validateSolution(test2Regions, test2IncorrectSolution) == False
-    assert starBattles.validateSolution(test3Regions, test3CorrectSolution) == True
-    assert starBattles.validateSolution(test3Regions, test3IncorrectSolution) == False
-    assert starBattles.validateSolution(test4Regions, test4CorrectSolution) == True
-    assert starBattles.validateSolution(test4Regions, test4IncorrectSolution) == False
+    assert starBattlesSolution.validateSolution(test1Regions, test1CorrectSolution) == True
+    assert starBattlesSolution.validateSolution(test1Regions, test1IncorrectSolution) == False
+    assert starBattlesSolution.validateSolution(test2Regions, test2CorrectSolution) == True
+    assert starBattlesSolution.validateSolution(test2Regions, test2IncorrectSolution) == False
+    assert starBattlesSolution.validateSolution(test3Regions, test3CorrectSolution) == True
+    assert starBattlesSolution.validateSolution(test3Regions, test3IncorrectSolution) == False
+    assert starBattlesSolution.validateSolution(test4Regions, test4CorrectSolution) == True
+    assert starBattlesSolution.validateSolution(test4Regions, test4IncorrectSolution) == False
 
 def test_solve():
-    test1Solution = starBattles.generateSolution(test1Regions)
-    assert starBattles.validateSolution(test1Regions, test1Solution) == True
+    test1Solution = starBattlesSolution.generateSolution(test1Regions)
+    assert starBattlesSolution.validateSolution(test1Regions, test1Solution) == True
 
-    test2Solution = starBattles.generateSolution(test2Regions)
-    assert starBattles.validateSolution(test2Regions, test2Solution) == True 
+    test2Solution = starBattlesSolution.generateSolution(test2Regions)
+    assert starBattlesSolution.validateSolution(test2Regions, test2Solution) == True 
 
-    test3Solution = starBattles.generateSolution(test3Regions)
-    assert starBattles.validateSolution(test3Regions, test3Solution) == True 
+    test3Solution = starBattlesSolution.generateSolution(test3Regions)
+    assert starBattlesSolution.validateSolution(test3Regions, test3Solution) == True 
 
-    test4Solution = starBattles.generateSolution(test4Regions)
-    assert starBattles.validateSolution(test4Regions, test4Solution) == True 
+    test4Solution = starBattlesSolution.generateSolution(test4Regions)
+    assert starBattlesSolution.validateSolution(test4Regions, test4Solution) == True 
 
 
 def test_generate_images():
-    test1Img = starBattles.returnImage('ImageProcessing/StarBattles/TestCases/test1_input.png')
-    test1GeneratedRegions = starBattles.generateRegionsFromImage(test1Img)
-    assert starBattles.validateSolution(test1GeneratedRegions, test1CorrectSolution)
+    test1Img = starBattlesSolution.returnImage('ImageProcessing/StarBattles/TestCases/test1_input.png')
+    test1GeneratedRegions = starBattlesSolution.generateRegionsFromImage(test1Img)
+    assert starBattlesSolution.validateSolution(test1GeneratedRegions, test1CorrectSolution)
 
-    test2Img = starBattles.returnImage('ImageProcessing/StarBattles/TestCases/test2_input.png')
-    test2GeneratedRegions = starBattles.generateRegionsFromImage(test2Img)
-    assert starBattles.validateSolution(test2GeneratedRegions, test2CorrectSolution)
+    test2Img = starBattlesSolution.returnImage('ImageProcessing/StarBattles/TestCases/test2_input.png')
+    test2GeneratedRegions = starBattlesSolution.generateRegionsFromImage(test2Img)
+    assert starBattlesSolution.validateSolution(test2GeneratedRegions, test2CorrectSolution)
 
-    test3Img = starBattles.returnImage('ImageProcessing/StarBattles/TestCases/test3_input.png')
-    test3GeneratedRegions = starBattles.generateRegionsFromImage(test3Img)
-    assert starBattles.validateSolution(test3GeneratedRegions, test3CorrectSolution)
+    test3Img = starBattlesSolution.returnImage('ImageProcessing/StarBattles/TestCases/test3_input.png')
+    test3GeneratedRegions = starBattlesSolution.generateRegionsFromImage(test3Img)
+    assert starBattlesSolution.validateSolution(test3GeneratedRegions, test3CorrectSolution)
 
-    test4Img = starBattles.returnImage('ImageProcessing/StarBattles/TestCases/test4_input.png')
-    test4GeneratedRegions = starBattles.generateRegionsFromImage(test4Img)
-    assert starBattles.validateSolution(test4GeneratedRegions, test4CorrectSolution)
-
-
+    test4Img = starBattlesSolution.returnImage('ImageProcessing/StarBattles/TestCases/test4_input.png')
+    test4GeneratedRegions = starBattlesSolution.generateRegionsFromImage(test4Img)
+    assert starBattlesSolution.validateSolution(test4GeneratedRegions, test4CorrectSolution)
